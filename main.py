@@ -1,78 +1,82 @@
-# Возведение в степень
+# Форматирование строк
 
-def power_operations():
+def formatting_strings():
 
-    numbers_input = input("Введите числа через пробел: ")
-    numbers = numbers_input.split()
+    name = input("Введите имя: ")
+    surname = input("Введите фамилию: ")
+    age = input("Введите возраст: ")
 
-    try:
-        power = int(input("Введите степень: "))
-    except ValueError:
-        print("Ошибка: степень должна быть целым числом.")
-        return
+    # format
+    formatted_string_format = "Имя: {}, Фамилия: {}, Возраст: {} лет".format(name, surname, age)
+    print("Реализация через .format():")
+    print(formatted_string_format)
 
-    result = []
-    for item in numbers:
-        try:
-            num = float(item)
-            result.append(num ** power)
-        except ValueError:
-            result.append(item * power)
+    # f-string
+    formatted_string_fstring = f"Имя: {name}, Фамилия: {surname}, Возраст: {age} лет"
+    print("Реализация через f-string:")
+    print(formatted_string_fstring)
 
-    print("Вывод:", ' '.join(map(str, result)))
+formatting_strings()
 
-power_operations()
 
-# Преобразование словаря
+# Четность числа
 
-def dictionary_to_sets():
-
-    dct = {1: 11, 2: 22, 3: 33, 4: 4, 5: 33, 6: 1}
-
-    key_set = set(dct.keys())
-    value_set = set(dct.values())
-
-    print("Множество ключей:", key_set)
-    print("Множество значений:", value_set)
-
-    combined_set = key_set.union(value_set)
-    print("Объединение множеств:", combined_set)
-
-dictionary_to_sets()
-
-# Пересечение двух списков
-
-def find_common_elements():
+def chetnost_chisla():
 
     try:
-        list1_str = input("Введите первый список: ")
-        list1 = set(map(int, list1_str.split()))
+        input_number = input("Введите целое число: ")
+        number = int(input_number)
 
-        list2_str = input("Введите второй список: ")
-        list2 = set(map(int, list2_str.split()))
+        if number <= 0:
+            print("Внимание: Требуется положительное число.")
+            return
 
-        common_elements = list1.intersection(list2)
-
-        print("Общие элементы:", *common_elements)
+        if number % 2 == 0:
+            print(f"Число {number} - четное")
+        else:
+            print(f"Число {number} - нечетное")
 
     except ValueError:
-        print("Ошибка: Введите целые числа, разделенные пробелами.")
+        print("Ошибка: Некорректный ввод. Введите целое число.")
 
-find_common_elements()
+chetnost_chisla()
 
-# Подсчет количества слов
+# Проверка возраста
 
-def word_count():
+def proverka_vozrasta():
 
-    text = input("Введите строку: ").lower()
-    words = text.split()
-    word_counts = {}
+    try:
+        input_age = input("Укажите ваш возраст: ")
+        age = int(input_age)
 
-    for word in words:
-        count = words.count(word)
-        word_counts[word] = count
+        if age < 0:
+            print("Некорректный возраст!")
+        elif age >= 18:
+            print("Вы - взрослый человек.")
+        else:
+            print("Вы - ребенок.")
 
-    for word, count in word_counts.items():
-        print(f"{word}: {count}")
+    except ValueError:
+        print("Ошибка: Необходимо ввести число!")
 
-word_count()
+proverka_vozrasta()
+
+# Длина числа
+
+def dlina_chisla():
+
+    while True:
+        entry = input("Введите число (или 'exit' для выхода): → ")
+
+        if entry.lower() == "exit":
+            print("Завершение работы...")
+            break
+
+        # Проверка на число, включая отрицательные
+        if entry.lstrip('-').isdigit():
+            digit_number = entry.lstrip('-')
+            print(f"Число состоит из {len(digit_number)} цифр.")
+        else:
+            print("Ошибка: Это не число.")
+
+dlina_chisla()
